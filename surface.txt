@@ -1,0 +1,47 @@
+# Hardware needed, Surface tab, mouse keyboard.
+
+# boot into UEFI
+## shutdown device. Then, press vol + and then power. Relase power when screen turn on, keep pressing on the vol +.
+
+# In UEFI go to security -> Secure boot -> change configuration. Chose option Microsoft & 3rd party CA
+
+# Go to boot configuration and boot from usb device
+
+# In fedora live, installl fedora
+
+# Boot into fedora
+
+# install dependencies
+# from home directory
+
+https://github.com/linux-surface/iptsd
+https://github.com/quo/ithc-linux
+
+sudo dnf config-manager --add-repo=https://pkg.surfacelinux.com/fedora/linux-surface.repo
+
+sudo dnf install dkms meson build make automake gcc gcc-c++ kernel-devel -y
+
+# install surface kernel
+
+sudo dnf install --allowerasing kernel-surface iptsd libwacom-surface
+
+# install secure boot
+
+sudo dnf install surface-secureboot
+
+# At this point you need to reboot
+# Upon reboot, a blue menu should pop up, asking you whether you want to enroll the key. Confirm with ok/yes and when asked for a password enter "surface"
+
+# After rebboting
+sudo systemctl enable --now linux-surface-default-watchdog.path
+sudo linux-surface-default-watchdog.py
+
+# reboot one more time
+# then check if booted on the correct kernel
+uname -a
+# checking if the output of uname -a contains the string surface
+
+# install the damn Intel driver for the touchscreen
+
+
+
